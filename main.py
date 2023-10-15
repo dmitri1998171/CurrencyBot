@@ -37,7 +37,7 @@ async def command_start_handler(message: Message, state: FSMContext) -> None:
 
 @dp.message(StateFilter(States.currencyRateState))
 async def currencyRateGetting(message: Message):
-    if(len(message.text) > 7):
+    if(currencyPairValidation(message.text) == False):
             await message.answer("Wrong currency pair! Please, type another one")
     else:
         curr_rate = getCurrencyRate(message.text)
